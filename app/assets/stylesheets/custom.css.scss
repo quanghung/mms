@@ -1,0 +1,33 @@
+@import "bootstrap";
+@import "font-awesome";
+@import url('http://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+body {
+  font-family: 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック','MS PGothic',sans-serif;
+  font-size: 14px;
+  line-height: 1.7em;
+}
+
+header {
+  margin-bottom: 50px;
+  .navbar {
+    margin: 33px 0 10px;
+    .navbar-inner {
+      background: none;
+      border: none;
+      box-shadow: none;
+      padding: 0 10px;
+    }
+  }
+}
+
+footer {
+  hr {
+    margin-top: 200px;
+  }
+  .copyright {
+    margin-top: 10px;
+    text-align: center;
+  }
+}
+
