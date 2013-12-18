@@ -1,3 +1,4 @@
+<% if signed_in? %>
 <header class="clearfix">
   <h1 id="top_logo" class="pull-left">
     <%= link_to image_tag("logo.png"), root_path, {alt: "Framgia"} %>
@@ -5,9 +6,11 @@
   <div class="navbar pull-right">
     <div class="navbar-inner">
         <ul class="nav">
-          <li><a href="#">Team</a></li>
-          <li><a href="#">Profile</a></li>
+          <li><%= link_to "Team", teams_path %></li>
+          <li><%= link_to "profile", team_user_path(current_team, current_user) %></li>
+          <li><%= link_to "Logout", signout_path, method: "delete" %></li>
         </ul>
     </div>
   </div>
 </header>
+<% end %>

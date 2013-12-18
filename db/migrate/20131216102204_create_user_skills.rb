@@ -6,9 +6,8 @@ class CreateUserSkills < ActiveRecord::Migration
       t.integer  "level",           limit: 1,             null: false
       t.integer  "experience_year"
       t.text     "descriptions"
-      t.integer  "active_flag",     limit: 1, default: 1, null: false
-      t.datetime "created_at",                            null: false
-      t.datetime "updated_at",                            null: false
+      t.boolean  "active_flag",     limit: 1, default: 1, null: false
+      t.timestamps 
     end
   
     add_index "user_skills", ["skill_id"], name: "fk_user_skill_skills", using: :btree

@@ -21,3 +21,7 @@
 
 en:
   hello: "Hello world"
+
+  messages:
+    errors:
+      login: "Invalid email/password combination"
