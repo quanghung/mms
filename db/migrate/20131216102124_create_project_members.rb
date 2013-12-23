@@ -3,9 +3,9 @@ class CreateProjectMembers < ActiveRecord::Migration
     create_table "project_members", force: true do |t|
       t.integer  "project_id",                        null: false
       t.integer  "user_id",                           null: false
-      t.integer  "active_flag", limit: 1, default: 1, null: false
-      t.datetime "created_at",                        null: false
-      t.datetime "updated_at",                        null: false
+      t.boolean  "leader_project_flag", limit: 1, default: 0, null: false
+      t.boolean  "active_flag", limit: 1, default: 1, null: false
+      t.timestamps 
     end
   
     add_index "project_members", ["id"], name: "id_UNIQUE", unique: true, using: :btree

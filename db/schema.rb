@@ -11,67 +11,83 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131216102211) do
+ActiveRecord::Schema.define(version: 20131217110458) do
 
   create_table "activities", force: true do |t|
-    t.integer  "type",        limit: 1,             null: false
-    t.integer  "item_id",                           null: false
-    t.datetime "timestamp",                         null: false
-    t.integer  "active_flag", limit: 1, default: 1, null: false
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.integer  "type",        limit: 1,                null: false
+    t.integer  "item_id",                              null: false
+    t.datetime "timestamp",                            null: false
+    t.boolean  "active_flag",           default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "activities", ["id"], name: "id_UNIQUE", unique: true, using: :btree
 
   create_table "admins", force: true do |t|
-    t.string   "email",           limit: 512,             null: false
-    t.string   "password_digest", limit: 256,             null: false
+    t.string   "email",           limit: 512,                null: false
+    t.string   "password_digest", limit: 256,                null: false
     t.string   "remember_token",  limit: 256
-    t.integer  "active_flag",     limit: 1,   default: 1, null: false
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.boolean  "active_flag",                 default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "admins", ["id"], name: "id_UNIQUE", unique: true, using: :btree
 
   create_table "positions", force: true do |t|
-    t.string   "name",         limit: 512,             null: false
-    t.string   "abbreviation", limit: 45,              null: false
-    t.integer  "active_flag",  limit: 1,   default: 1, null: false
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.string   "name",         limit: 512,                null: false
+    t.string   "abbreviation", limit: 45,                 null: false
+    t.boolean  "active_flag",              default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "positions", ["id"], name: "id_UNIQUE", unique: true, using: :btree
 
   create_table "project_members", force: true do |t|
-    t.integer  "project_id",                        null: false
-    t.integer  "user_id",                           null: false
-    t.integer  "active_flag", limit: 1, default: 1, null: false
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.integer  "project_id",                          null: false
+    t.integer  "user_id",                             null: false
+    t.boolean  "leader_project_flag", default: false, null: false
+    t.boolean  "active_flag",         default: true,  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "project_members", ["id"], name: "id_UNIQUE", unique: true, using: :btree
   add_index "project_members", ["project_id"], name: "fk_project_member_projects", using: :btree
   add_index "project_members", ["user_id"], name: "fk_project_member_users", using: :btree
 
+  create_table "projects", force: true do |t|
+    t.text     "name",                                   null: false
+    t.string   "abbreviation", limit: 45,                null: false
+    t.date     "start_date",                             null: false
+    t.date     "end_date",                               null: false
+    t.integer  "team_id",                                null: false
+    t.boolean  "active_flag",             default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "projects", ["id"], name: "id_UNIQUE", unique: true, using: :btree
+  add_index "projects", ["team_id"], name: "fk_project_teams", using: :btree
+
   create_table "skills", force: true do |t|
-    t.string   "name",        limit: 512,             null: false
-    t.integer  "active_flag", limit: 1,   default: 1, null: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.string   "name",        limit: 512,                null: false
+    t.boolean  "active_flag",             default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "skills", ["id"], name: "id_UNIQUE", unique: true, using: :btree
 
   create_table "team_members", force: true do |t|
-    t.integer  "user_id",                           null: false
-    t.integer  "team_id",                           null: false
-    t.integer  "active_flag", limit: 1, default: 1, null: false
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.integer  "user_id",                                 null: false
+    t.integer  "team_id",                                 null: false
+    t.boolean  "current_member_team_flag", default: true
+    t.boolean  "active_flag",              default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "team_members", ["id"], name: "id_UNIQUE", unique: true, using: :btree
@@ -79,39 +95,38 @@ ActiveRecord::Schema.define(version: 20131216102211) do
   add_index "team_members", ["user_id"], name: "fk_team_member_users", using: :btree
 
   create_table "teams", force: true do |t|
-    t.string   "name",         limit: 512,             null: false
-    t.integer  "leader_id",                            null: false
+    t.string   "name",         limit: 512,                null: false
+    t.integer  "leader_id",                               null: false
     t.text     "descriptions"
-    t.integer  "active_flag",  limit: 1,   default: 1, null: false
-    t.datetime "created_at",                           null: false
-    t.string   "updated_at",   limit: 45,              null: false
+    t.boolean  "active_flag",              default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "user_skills", force: true do |t|
-    t.integer  "user_id",                               null: false
-    t.integer  "skill_id",                              null: false
-    t.integer  "level",           limit: 1,             null: false
+    t.integer  "user_id",                                  null: false
+    t.integer  "skill_id",                                 null: false
+    t.integer  "level",           limit: 1,                null: false
     t.integer  "experience_year"
     t.text     "descriptions"
-    t.integer  "active_flag",     limit: 1, default: 1, null: false
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.boolean  "active_flag",               default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "user_skills", ["skill_id"], name: "fk_user_skill_skills", using: :btree
   add_index "user_skills", ["user_id"], name: "fk_user_skill_users", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "name",            limit: 512,             null: false
+    t.string   "name",            limit: 512,                null: false
     t.date     "birthday"
-    t.integer  "current_team_id"
-    t.integer  "position_id",                             null: false
-    t.string   "email",           limit: 512,             null: false
-    t.string   "password_digest", limit: 256,             null: false
+    t.integer  "position_id",                                null: false
+    t.string   "email",           limit: 512,                null: false
+    t.string   "password_digest", limit: 256,                null: false
     t.string   "remember_token",  limit: 256
-    t.integer  "active_flag",     limit: 1,   default: 1, null: false
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.boolean  "active_flag",                 default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "users", ["id"], name: "id_UNIQUE", unique: true, using: :btree

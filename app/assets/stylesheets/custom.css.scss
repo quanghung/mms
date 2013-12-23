@@ -31,3 +31,20 @@ footer {
   }
 }
 
+#login-box {
+  margin-top: 150px;
+  .left {
+    text-align: right;
+    vertical-align: middle;
+    img {
+      margin-top: 20px;
+    }
+    h5 {
+      margin: 10px 10px 0 0;
+    }
+  }
+  .right {
+    border-left: 1px solid #CCCCCC;
+    padding: 20px 0 0 50px;
+  }
+}

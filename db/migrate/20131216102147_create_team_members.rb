@@ -3,9 +3,9 @@ class CreateTeamMembers < ActiveRecord::Migration
     create_table "team_members", force: true do |t|
       t.integer  "user_id",                           null: false
       t.integer  "team_id",                           null: false
-      t.integer  "active_flag", limit: 1, default: 1, null: false
-      t.datetime "created_at",                        null: false
-      t.datetime "updated_at",                        null: false
+      t.boolean  "current_member_team_flag", limit: 1, default: 1
+      t.boolean  "active_flag", limit: 1, default: 1, null: false
+      t.timestamps 
     end
   
     add_index "team_members", ["id"], name: "id_UNIQUE", unique: true, using: :btree
