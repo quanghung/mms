@@ -1,0 +1,17 @@
+<div id="login-box" class="row-fluid">
+  <div class="span6 left">
+    <%= image_tag "logo.png" %>
+    <h5>Memeber Management System</h5>
+    <h5>Admin Signin</h5>
+  </div>
+  <div class="span6 right">
+    <%= render "shared/flash_messages" %>
+    <%= form_for :session, url: admin_sessions_path do |f| %>
+      <%= f.text_field :email, placeholder: "email" %>
+      <%= f.password_field :password, placeholder: "password" %>
+      <div>
+         <%= f.submit "Login", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

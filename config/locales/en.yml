@@ -25,3 +25,10 @@ en:
   messages:
     errors:
       login: "Invalid email/password combination"
+    add_user:
+      success: "Add successful"
+      unsuccess: "Add not successful"
+    delete_user:
+      success: "Delete success"
+      unsuccess: "Delete unsuccess"
+

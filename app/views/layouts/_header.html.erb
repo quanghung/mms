@@ -1,16 +1,27 @@
-<% if signed_in? %>
 <header class="clearfix">
   <h1 id="top_logo" class="pull-left">
-    <%= link_to image_tag("logo.png"), root_path, {alt: "Framgia"} %>
+    <%= link_to image_tag("logo.png"), "", alt: "Framgia" %>
   </h1>
   <div class="navbar pull-right">
+  	<% if signed_in? %>
     <div class="navbar-inner">
-        <ul class="nav">
-          <li><%= link_to "Team", teams_path %></li>
-          <li><%= link_to "profile", team_user_path(current_team, current_user) %></li>
-          <li><%= link_to "Logout", signout_path, method: "delete" %></li>
-        </ul>
+      <ul class="nav">
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "Team", teams_path %></li>
+        <li><%= link_to "profile", team_user_path(current_team, current_user) %></li>
+        <li><%= link_to "Logout", signout_path, method: :delete %></li>
+      </ul>
     </div>
+    <% elsif admin_signed_in? %>
+    <div class="navbar-inner">
+      <ul class="nav">
+    	  <li><%= link_to "Home", admin_root_path %></li>
+    	  <li><%= link_to "Users", admin_users_path %></li>
+    	  <li><%= link_to "Teams", "" %></li>
+    	  <li><%= link_to "Sign out", admin_signout_path, method: :delete %></li>
+	    </ul>
+    </div>
+    <% end %>
   </div>
 </header>
-<% end %>
+
