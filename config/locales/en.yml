@@ -31,4 +31,7 @@ en:
     delete_user:
       success: "Delete success"
       unsuccess: "Delete unsuccess"
+    update:
+      success: "Update success"
+      unsuccess: "Update unsuccess"
 
