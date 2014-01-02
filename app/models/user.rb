@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :not_destroy
   before_validation ->{self.email = email.downcase}
-  validates :name,  presence: true, length: {maximum: 50}
+  validates :name, presence: true, length: {maximum: 50}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX},
     uniqueness: {case_sensitive: false}
@@ -22,6 +22,9 @@ class User < ActiveRecord::Base
       .where("team_members.current_member_team_flag" => true,
         "team_members.active_flag" => true)
           .where("teams.id" => team.id)
+  end
+  scope :users_has_position, ->position do
+    where(position_id: position.id)
   end
 
   class << self

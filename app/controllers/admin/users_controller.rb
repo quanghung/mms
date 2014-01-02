@@ -34,9 +34,20 @@ class Admin::UsersController < ApplicationController
 	end
 
 	def edit
+		@user = User.find params[:id]
+		@positions = Position.all
+		@position = Position.find @user.position_id
 	end
 
 	def update
+		@user = User.find params[:id]
+		if @user.update_attributes! user_params
+		  flash[:success] = I18n.t ".messages.update.success"
+      redirect_to admin_user_path @user
+    else
+      flash[:success] = I18n.t ".messages.update.unsuccess"
+      redirect_to "edit"
+    end
 	end
 
 	def destroy
