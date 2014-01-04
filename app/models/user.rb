@@ -7,13 +7,13 @@ class User < ActiveRecord::Base
   has_many :user_skills
   has_many :skills, through: :user_skills
 
-  attr_accessor :not_destroy
+  attr_accessor :not_validates_password
   before_validation ->{self.email = email.downcase}
   validates :name, presence: true, length: {maximum: 50}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX},
     uniqueness: {case_sensitive: false}
-  validates :password, length: {minimum: 6}, unless: :not_destroy
+  validates :password, length: {minimum: 6}, unless: :not_validates_password
   validates :position_id, presence: true
 
   scope :users_has_position, ->position do

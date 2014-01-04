@@ -28,7 +28,7 @@ class Admin::UsersController < ApplicationController
       flash[:success] = I18n.t ".messages.add_user.success"
       redirect_to admin_users_path
     else
-    	flash[:success] = I18n.t ".messages.add_user.unsuccess"
+      flash[:success] = I18n.t ".messages.add_user.unsuccess"
       render "new"
     end
 	end
@@ -52,7 +52,7 @@ class Admin::UsersController < ApplicationController
 
 	def destroy
 		user = User.find params[:id]
-		user.not_destroy = true
+		user.not_validates_password = true
 		if user.update_attributes! active_flag: false
 			flash[:success] = I18n.t ".messages.delete_user.success"
 		else
