@@ -33,6 +33,18 @@ ActiveRecord::Schema.define(version: 20131217110458) do
 
   add_index "positions", ["id"], name: "index_positions_on_id", unique: true, using: :btree
 
+  create_table "project_users", force: true do |t|
+    t.integer  "project_id",                  null: false
+    t.integer  "user_id",                     null: false
+    t.boolean  "leader_flag", default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "project_users", ["id"], name: "index_project_users_on_id", unique: true, using: :btree
+  add_index "project_users", ["project_id"], name: "index_project_users_on_project_id_and_created_at", using: :btree
+  add_index "project_users", ["user_id"], name: "index_project_users_on_user_id_and_created_at", using: :btree
+
   create_table "projects", force: true do |t|
     t.text     "name",                  null: false
     t.string   "short_name", limit: 45, null: false
@@ -95,17 +107,5 @@ ActiveRecord::Schema.define(version: 20131217110458) do
   add_index "users", ["position_id"], name: "index_users_on_position_id_and_created_at", using: :btree
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", length: {"remember_token"=>255}, using: :btree
   add_index "users", ["team_id"], name: "index_users_on_team_id_and_created_at", using: :btree
-
-  create_table "users_project", force: true do |t|
-    t.integer  "project_id",                  null: false
-    t.integer  "user_id",                     null: false
-    t.boolean  "leader_flag", default: false, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "users_project", ["id"], name: "index_users_project_on_id", unique: true, using: :btree
-  add_index "users_project", ["project_id"], name: "index_user_project_on_project_id_and_created_at", using: :btree
-  add_index "users_project", ["user_id"], name: "index_user_project_on_user_id_and_created_at", using: :btree
 
 end

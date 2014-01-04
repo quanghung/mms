@@ -11,8 +11,9 @@ class UsersController < ApplicationController
     @team = Team.find params[:team_id]
     @user = @team.users.find params[:id]
   end
-  
+
   def correct_user
     redirect_to root_url unless current_user? @user
   end 
+
 end

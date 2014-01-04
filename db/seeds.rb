@@ -1,34 +1,25 @@
 PASSWORD = "123456"
 
-admins_list = [
-  {email: "tuan@framgia.com", password: PASSWORD, password_confirmation: PASSWORD},
-  {email: "tuanlq@framgia.com", password: PASSWORD, password_confirmation: PASSWORD},
-  {email: "thainh@framgia.com", password: PASSWORD, password_confirmation: PASSWORD}
-]
-
-admins_list.each do |admin|
-  Admin.create! admin
-end
 
 positions_list = [
-  {name: "manager", abbreviation: "MA"},
-  {name: "leader", abbreviation: "LE"},
-  {name: "programer", abbreviation: "PG"}
+  {name: "manager", short_name: "MA"},
+  {name: "leader", short_name: "LE"},
+  {name: "programer", short_name: "PG"}
 ]
 
 positions_list.each do |position|
   Position.create! position
 end
 
-project_members_list = [
-  {project_id: 1, user_id: 1, leader_project_flag: true},
-  {project_id: 1, user_id: 2},
-  {project_id: 2, user_id: 3, leader_project_flag: true},
-  {project_id: 2, user_id: 4}
+project_users_list = [
+  {project_id: 1, user_id: 1, leader_flag: true},
+  {project_id: 1, user_id: 2, leader_flag: false},
+  {project_id: 2, user_id: 3, leader_flag: true},
+  {project_id: 2, user_id: 4, leader_flag: false}
 ]
 
-project_members_list.each do |project_member|
-  ProjectMember.create! project_member
+project_users_list.each do |project_user|
+  ProjectUser.create! project_user
 end
 
 skills_list = [
@@ -40,20 +31,10 @@ skills_list.each do |skill|
   Skill.create! skill
 end
 
-team_members_list = [
-  {user_id: 1, team_id: 1},
-  {user_id: 2, team_id: 1},
-  {user_id: 3, team_id: 2},
-  {user_id: 4, team_id: 2}
-]
-
-team_members_list.each do |team_member|
-  TeamMember.create! team_member
-end
 
 teams_list = [
-  {name: "Team 1", leader_id: 1},
-  {name: "Team 2", leader_id: 3},
+  {name: "Team 1"},
+  {name: "Team 2"},
 ]
 
 teams_list.each do |team|
@@ -61,14 +42,14 @@ teams_list.each do |team|
 end
 
 user_skills_list = [
-  {user_id: 1, skill_id: 1, level: 1},
-  {user_id: 1, skill_id: 2, level: 2},
-  {user_id: 2, skill_id: 1, level: 1},
-  {user_id: 2, skill_id: 2, level: 2},
-  {user_id: 3, skill_id: 1, level: 1},
-  {user_id: 3, skill_id: 2, level: 2},
-  {user_id: 4, skill_id: 1, level: 1},
-  {user_id: 4, skill_id: 2, level: 2}
+  {user_id: 1, skill_id: 1, level: 1, experience_year: 1},
+  {user_id: 1, skill_id: 2, level: 2, experience_year: 2},
+  {user_id: 2, skill_id: 1, level: 1, experience_year: 1},
+  {user_id: 2, skill_id: 2, level: 2, experience_year: 2},
+  {user_id: 3, skill_id: 1, level: 1, experience_year: 1},
+  {user_id: 3, skill_id: 2, level: 2, experience_year: 2},
+  {user_id: 4, skill_id: 1, level: 1, experience_year: 1},
+  {user_id: 4, skill_id: 2, level: 2, experience_year: 2}
 ]
 
 user_skills_list.each do |user_skill|
@@ -76,17 +57,37 @@ user_skills_list.each do |user_skill|
 end
 
 users_list = [
-  {name: "Nguyen Van A", position_id: 2,
-    email: "a@framgia.com", password: PASSWORD,
+  {name: "Admin", position_id: 2,
+    email: "admin@framgia.com",
+    birthday: "01-01-2011",
+    isAdmin: true,
+    position_id: 1,
+    team_id: 1,
+    password: PASSWORD,
     password_confirmation: PASSWORD},
-  {name: "Nguyen Van B", position_id: 3,
-    email: "b@framgia.com", password: PASSWORD,
+  {name: "Nguyen Van A", position_id: 3,
+    email: "a@framgia.com", 
+    birthday: "01-01-2010",
+    isAdmin: false,
+    position_id: 2,
+    team_id: 1,
+    password: PASSWORD,
     password_confirmation: PASSWORD},
-  {name: "Nguyen Van C", position_id: 2,
-    email: "c@framgia.com", password: PASSWORD,
+  {name: "Nguyen Van B", position_id: 2,
+    email: "b@framgia.com", 
+    birthday: "01-02-2011",
+    isAdmin: false,
+    position_id: 3,
+    team_id: 1,
+    password: PASSWORD,
     password_confirmation: PASSWORD},
-  {name: "Nguyen Van D", position_id: 3,
-    email: "d@framgia.com", password: PASSWORD,
+  {name: "Nguyen Van C", position_id: 3,
+    email: "c@framgia.com", 
+    birthday: "01-02-2010",
+    isAdmin: false,
+    position_id: 2,
+    team_id: 2,
+    password: PASSWORD,
     password_confirmation: PASSWORD},
 ]
 
@@ -95,13 +96,13 @@ users_list.each do |user|
 end
 
 projects_list = [
-  {name: "framgia os", abbreviation: "fos",
+  {name: "framgia os", short_name: "fos",
     start_date: "01-10-2013", end_date: "01-12-2013", team_id: 1},
-  {name: "facebook app", abbreviation: "face",
+  {name: "facebook app", short_name: "face",
     start_date: "01-07-2013", end_date: "01-12-2013", team_id: 1},
-  {name: "ios promotion", abbreviation: "ios",
+  {name: "ios promotion", short_name: "ios",
     start_date: "01-10-2013", end_date: "01-12-2013", team_id: 1},
-  {name: "android game", abbreviation: "adg",
+  {name: "android game", short_name: "adg",
     start_date: "01-10-2013", end_date: "01-12-2013", team_id: 2}
 ]
 
