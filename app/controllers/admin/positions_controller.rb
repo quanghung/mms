@@ -52,6 +52,6 @@ class Admin::PositionsController < ApplicationController
 
   private
   def position_params
-    params.require(:position).permit :name, :abbreviation
+    params.require(:position).permit :name, :short_name
   end
 end

@@ -1,10 +1,15 @@
 <h1><%= @user.name %></h1>
 <ul>
-  <%= @user.email %>
-  <%= @user.birthday %>
+  <li><%= @user.email %></li>
+  <li><%= @user.birthday %></li>
 </ul>
 
-<h2>Projects: <h2>
+<h3>Team: </h3>
+<ul>
+  <%= @team.name %>
+</ul>
+
+<h3>Projects: <h3>
 <ul>
   <% @user.projects.each do |project| %>
     <li>
@@ -18,9 +23,7 @@
 	<%= @user.position.name %>
 </ul>
 
-<h4>
-	Skills: 
-</h4>
+<h4>Skills: </h4>
 <ul>
   <% @user.skills.each do |skill| %>
     <li>

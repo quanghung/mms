@@ -1,6 +1,5 @@
 class Position < ActiveRecord::Base
-	default_scope where(active_flag: 1)
-  has_many :users
+  has_many  :users
   validates :name, presence: true
-  validates :abbreviation, presence: true
+  validates :short_name, presence: true
 end
