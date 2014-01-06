@@ -12,6 +12,9 @@
       <h3>
         <%= skill.name %>
         <%= link_to "edit", edit_admin_skill_path(skill.id) %>
+        <%= link_to "delete", admin_skill_path(skill.id),
+          method: :delete, confirm: "Are you sure?",
+            title: "Delete #{skill.name}", class: "link-danger" %>
       </h3>
     </div>	
   </li>
