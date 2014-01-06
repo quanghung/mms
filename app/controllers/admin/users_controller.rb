@@ -1,15 +1,8 @@
 class Admin::UsersController < ApplicationController
-	before_action :signed_in_admin
+	before_action :signed_in_user
 
 	def index
-		if params[:team_id]
-			team = Team.find params[:team_id]
-			@users = User.current_members_team(team)
-			  .paginate(page: params[:page]) if team
-    else
-		  @users = User.all.paginate page: params[:page]
-		end
-		@teams = Team.all
+    	@users = User.all.paginate page: params[:page], per_page:4
 	end
 	
 	def show
@@ -18,25 +11,28 @@ class Admin::UsersController < ApplicationController
 
 	def new
 		@positions = Position.all
+		@teams = Team.all
+		@skills = Skill.all
 		@user = User.new
 	end
 
 	def create
-		@positions = Position.all
 		@user = User.new user_params
-    if @user.save
-      flash[:success] = I18n.t ".messages.add_user.success"
-      redirect_to admin_users_path
-    else
-      flash[:success] = I18n.t ".messages.add_user.unsuccess"
-      render "new"
-    end
+	    if @user.save
+	      flash[:success] = I18n.t ".messages.add_user.success"
+	      redirect_to admin_users_path
+	    else
+	      flash[:success] = I18n.t ".messages.add_user.unsuccess"
+	      render "new"
+	    end
 	end
 
 	def edit
 		@user = User.find params[:id]
 		@positions = Position.all
 		@position = Position.find @user.position_id
+		@teams = Team.all
+		@team = Team.find @user.team_id
 	end
 
 	def update

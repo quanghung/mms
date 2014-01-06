@@ -7,8 +7,8 @@ Mms::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :users
 
-  match "/signin",  to: "sessions#new",         via: "get"
-  match "/signout", to: "sessions#destroy",     via: "delete"
+  match "/signin", to: "sessions#new", via: "get"
+  match "/signout", to: "sessions#destroy", via: "delete"
   
   namespace :admin do
      root "static_pages#index"
@@ -19,9 +19,9 @@ Mms::Application.routes.draw do
      resources :positions
      resources :skills
      resources :projects do
-        resources :project_users, only: [:new, :create, :destroy] 
+        resources :project_users, only: [:new, :create, :destroy]
      end
-     match "/signin",  to: "sessions#new",        via: :get
-     match "/signout", to: "sessions#destroy",    via: :delete
+     match "/signin", to: "sessions#new", via: :get
+     match "/signout", to: "sessions#destroy", via: :delete
   end
 end

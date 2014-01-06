@@ -4,15 +4,27 @@
   </h1>
   <div class="navbar pull-right">
   	<% if signed_in? %>
-    <div class="navbar-inner">
-      <ul class="nav">
-        <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "Team", teams_path %></li>
-        <li><%= link_to "profile", team_user_path(current_team, current_user) %></li>
-        <li><%= link_to "Logout", signout_path, method: :delete %></li>
-          <li><%= link_to "Position", admin_positions_path %></li>
-      </ul>
-    </div>
+      <% if current_user.isAdmin? %>
+        <div class="navbar-inner">
+          <ul class="nav">
+            <li><%= link_to "Home",  admin_root_path %></li>
+            <li><%= link_to "Users", admin_users_path %></li>
+            <li><%= link_to "Positions", admin_positions_path %></li>
+            <li><%= link_to "Projects", "" %></li>
+            <li><%= link_to "Teams", "" %></li>
+            <li><%= link_to "Sign out", admin_signout_path, method: :delete %></li>
+          </ul>
+        </div>
+       <% else %>
+        <div class="navbar-inner">
+          <ul class="nav">
+            <li><%= link_to "Home", root_path %></li>
+            <li><%= link_to "Team", teams_path %></li>
+            <li><%= link_to "profile", team_user_path(current_team, current_user) %></li>
+            <li><%= link_to "Logout", signout_path, method: :delete %></li>
+          </ul>
+        </div>
+        <% end %>
     <% end %>
   </div>
 </header>
