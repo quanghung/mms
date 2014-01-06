@@ -18,11 +18,16 @@
 
       <%= f.label :birthday %>
       <%= f.date_select :birthday %>
+
+      <%= f.label :team %>
+      <%= f.select "team_id", options_from_collection_for_select(@teams,
+        "id", "name", params["team_id"]), include_blank: true,
+          id: "team_select", class: "teams" %>
       
       <%= f.label :position %>
       <%= f.select "position_id", options_from_collection_for_select(@positions,
         "id", "name", params["position_id"]), include_blank: true,
-          id: "position_select", class: "positions" %>
+          id: "position_select", class: "positions" %><br/>
 
       <%= f.submit "Add User",class: "btn btn-large btn-primary" %>
       <% end %>

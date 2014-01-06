@@ -1,5 +1,7 @@
 class Admin::PositionsController < ApplicationController
+
   #before_action :signed_in_admin
+  before_action :signed_in_user
   
   def index
    @positions = Position.all.paginate page: params[:page], per_page: 1

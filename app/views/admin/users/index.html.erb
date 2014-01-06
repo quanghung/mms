@@ -11,12 +11,14 @@
   <li>
   	<%= gravatar_for user %>
     <div class="user-info">
-      <h3>
-        <%= link_to user.name, admin_user_path(user) %>
+      <span>
+        <strong><%= link_to user.name, admin_user_path(user) %></strong>
+      </span>
+      <span>
         <%= link_to "delete", admin_user_path(user.id),
           method: :delete, confirm: "Are you sure?",
             title: "Delete #{user.name}", class: "link-danger" %>
-      </h3>
+      </span>
       
     </div>
   </li>
