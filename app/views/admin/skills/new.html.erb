@@ -1,0 +1,13 @@
+<h1 class="offset1 pull-left">Add Skill</h1>
+
+<div class="row">
+    <div class="span6 offset1">
+      <%= form_for [:admin, @skill] do |f| %>
+      <%= render "shared/flash_messages" %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.submit "Add skill",class: "btn btn-large btn-primary" %>
+      <% end %>
+    </div>
+</div>

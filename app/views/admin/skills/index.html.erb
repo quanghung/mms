@@ -1,0 +1,20 @@
+<h1>All Skills</h1>
+<h2>
+  <%= link_to "Add skill", new_admin_skill_path,
+    class: "btn btn-medium btn-primary" %>
+</h2>
+<%= render "shared/flash_messages" %>
+<ul class="user">
+	
+  <% @skills.each do |skill| %>
+  <li>
+    <div class="user-info">
+      <h3>
+        <%= skill.name %>
+        <%= link_to "edit", edit_admin_skill_path(skill.id) %>
+      </h3>
+    </div>	
+  </li>
+  <% end %>
+</ul>
+<%= will_paginate %>
