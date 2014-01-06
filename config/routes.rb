@@ -16,9 +16,7 @@ Mms::Application.routes.draw do
      resources :users do
 
      end
-     resources :positions do
-        resources :users
-     end
+     resources :positions
      resources :skills
      resources :projects do
         resources :project_users, only: [:new, :create, :destroy] 
