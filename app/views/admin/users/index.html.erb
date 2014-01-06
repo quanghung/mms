@@ -1,11 +1,9 @@
 <h1>All Users</h1>
-<h3>Teams:
-  <%= select_tag "team_id",
-    options_from_collection_for_select(@teams, "id", "name", params["team_id"]),
-      include_blank: true, id: "team_select", class: "teams" %>
-  <%= link_to "Add user", new_admin_user_path,
+<div>
+<%= link_to "Add user", new_admin_user_path,
     class: "btn btn-medium btn-primary" %>
-</h3>
+</div>
+<br/>
 <ul class="users">
   <% @users.each do |user| %>
   <li>
