@@ -3,21 +3,23 @@
   <%= link_to "Add position", new_admin_position_path,
     class: "btn btn-medium btn-primary" %>
 </h2>
+
 <%= render "shared/flash_messages" %>
-<ul class="user">
-	
-  <% @positions.each do |position| %>
-  <li>
-    <div class="user-info">
-      <h3>
-        <%= position.name %>
-        <%= link_to "edit", edit_admin_position_path(position.id) %>
-        <%= link_to "delete", admin_position_path(position.id),
-          method: :delete, confirm: "Are you sure?",
-            title: "Delete #{position.name}", class: "link-danger" %>
-      </h3>
-    </div>	
-  </li>
-  <% end %>
-</ul>
+
+<h4>
+  <ul class="user">
+    <% @positions.each do |position| %>
+      <br/>
+      <li>
+        <div class="user-info">
+          <%= position.name  %><br/ng>
+           <%= position.short_name %><br/>
+          <%= link_to "edit", edit_admin_position_path(position.id), class: "btn btn-medium btn-primary"  %>
+  
+      </li>
+    <% end %>
+  </ul>
+</h4>
 <%= will_paginate %>
+       
+ 

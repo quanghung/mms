@@ -1,8 +1,8 @@
 class Admin::PositionsController < ApplicationController
-  before_action :signed_in_admin
+  #before_action :signed_in_admin
   
   def index
-    @positions = Position.all.paginate page: params[:page]
+   @positions = Position.all.paginate page: params[:page], per_page: 1
   end
 
   def new
@@ -35,20 +35,20 @@ class Admin::PositionsController < ApplicationController
     end
   end
 
-  def destroy
-    position = Position.find params[:id]
-    if position.update_attributes! active_flag: 0
-      flash[:success] = I18n.t ".messages.delete_user.success"
-      users = User.users_has_position position
-      users.each do |user|
-        user.not_destroy = true
-        user.update_attributes! active_flag: 0
-      end
-    else
-      flash[:success] = I18n.t ".messages.delete_user.unsuccess"
-    end
-    redirect_to admin_positions_path
-  end
+#  def destroy
+#    position = Position.find params[:id]
+#    if position.update_attributes! active_flag: 0
+#      flash[:success] = I18n.t ".messages.delete_user.success"
+#      users = User.users_has_position position
+#      users.each do |user|
+#        user.not_destroy = true
+#        user.update_attributes! active_flag: 0
+#      end
+#    else
+#      flash[:success] = I18n.t ".messages.delete_user.unsuccess"
+#    end
+#  redirect_to admin_positions_path
+ # end
 
   private
   def position_params
