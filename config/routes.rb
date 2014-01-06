@@ -6,15 +6,26 @@ Mms::Application.routes.draw do
   end
   resources :sessions, only: [:new, :create, :destroy]
   resources :users
+
   match "/signin",  to: "sessions#new",         via: "get"
   match "/signout", to: "sessions#destroy",     via: "delete"
+  
+  namespace :admin do
+     root "static_pages#index"
+     resources :sessions, only: [:new, :create, :destroy]
+     resources :users do
 
-  # namespace :admin do
-  #   root "static_pages#index"
-  #   resources :sessions, only: [:new, :create, :destroy]
-  #   resources :users
-  #   resources :positions
-  #   match "/signin",  to: "sessions#new",        via: :get
-  #   match "/signout", to: "sessions#destroy",    via: :delete
-  # end
+     end
+     resources :positions do
+        resources :users
+     end
+     resources :skills do
+        resources :user_skills, only: [:new, :create, :destroy] 
+     end
+     resources :projects do
+        resources :project_users, only: [:new, :create, :destroy] 
+     end
+     match "/signin",  to: "sessions#new",        via: :get
+     match "/signout", to: "sessions#destroy",    via: :delete
+  end
 end
