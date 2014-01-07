@@ -1,0 +1,16 @@
+<h1 class="offset1 pull-left">Edit Team</h1>
+
+<div class="row">
+    <div class="span6 offset1">
+      <%= form_for [:admin, @team], method: :patch do |f| %>
+      <%= render "shared/flash_messages" %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+        
+      <%= f.label :'Description' %>
+      <%= f.text_field :descriptions %>
+
+      <%= f.submit "Edit Team",class: "btn btn-large btn-primary" %>
+      <% end %>
+    </div>
+</div>

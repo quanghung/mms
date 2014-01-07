@@ -1,0 +1,39 @@
+<h1>All Team</h1>
+<h2>
+  <%= link_to "Add team", new_admin_team_path,
+    class: "btn btn-medium btn-primary" %>
+</h2>
+
+<%= render "shared/flash_messages" %>
+<div class="row">
+    <div class="span6 offset1">
+      <table style="text-align: center" border="1">      
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Name Team</th>
+            <th>Desciption</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @teams.each do |team| %>
+          <tr>
+            <td><%= team.id %></td>
+            <td><%= team.name %></td>
+            <td><%= team.descriptions %></td>
+            <td>
+                <%= link_to "edit", edit_admin_team_path(team.id) %>/
+                <%= link_to "delete", admin_team_path(team.id),
+                      method: :delete, confirm: "Are you sure?",
+                      title: "Delete #{team.name}", class: "link-danger"  %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+</div>
+<%= will_paginate %>
+       
+ 

@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
     uniqueness: {case_sensitive: false}
   validates :password, length: {minimum: 6}, unless: :not_validates_password
   validates :position_id, presence: true
-
+  validates :team_id, presence: true
   scope :users_has_position, ->position do
     where(position_id: position.id)
   end
