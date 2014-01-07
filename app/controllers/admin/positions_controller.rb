@@ -51,6 +51,15 @@ class Admin::PositionsController < ApplicationController
 #    end
 #  redirect_to admin_positions_path
  # end
+  def destroy
+    position = Position.find params[:id]
+    if position.users.count == 0 and position.destroy!
+      flash[:success] = I18n.t ".messages.delete_user.success"
+    else
+      flash[:success] = I18n.t ".messages.delete_user.unsuccess"
+    end
+    redirect_to admin_positions_path
+  end
 
   private
   def position_params
