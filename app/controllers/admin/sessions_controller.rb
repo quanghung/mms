@@ -14,7 +14,7 @@ class Admin::SessionsController < ApplicationController
   end
 
   def destroy
-    admin_sign_out!
+    sign_out!
     redirect_to admin_root_path
   end
 end

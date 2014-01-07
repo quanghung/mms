@@ -16,6 +16,7 @@ Mms::Application.routes.draw do
      resources :users do
 
      end
+     resources :teams
      resources :positions
      resources :skills
      resources :projects do
