@@ -7,4 +7,5 @@ class Project < ActiveRecord::Base
   validates :short_name, presence: true, length: {maximum: 45}
   validates :start_date, presence: true
   validates :end_date, presence: true
+  validates :team_id, presence: true
 end
