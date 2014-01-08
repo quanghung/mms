@@ -28,7 +28,33 @@
       <%= f.select "position_id", options_from_collection_for_select(@positions,
         "id", "name", params["position_id"]), include_blank: true,
           id: "position_select", class: "positions" %><br/>
-
+      <%= f.label :skill %>
+      <table style="text-align: center" border="1">      
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Skill Name</th>
+            <th>Skill Level</th>
+            <th>Used year number</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @skills.each do |skill| %>
+          <%= hidden_field_tag "skills[]", skill.id %>
+          <tr>
+            <td><%= skill.id %></td>
+            <td><%= skill.name %></td>
+            <td>
+              <%= select_tag("levels[]", 
+              options_for_select([['Level 1',1], ['Level 2', 2], ['Level 3', 3], ['Level 4', 4]])) %>
+            </td>
+            <td>
+                <%= text_field_tag "experience_years[]" %>   
+            </td>          
+          <% end %>
+        </tbody>
+      </table>
+      <br/>
       <%= f.submit "Add User",class: "btn btn-large btn-primary" %>
       <% end %>
     </div>
