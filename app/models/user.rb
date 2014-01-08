@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :projects, through: :project_users
   has_many :user_skills
   has_many :skills, through: :user_skills
-
+  accepts_nested_attributes_for :user_skills
   attr_accessor :not_validates_password
   before_validation ->{self.email = email.downcase}
   validates :name, presence: true, length: {maximum: 50}
