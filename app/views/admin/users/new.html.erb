@@ -32,25 +32,24 @@
       <table style="text-align: center" border="1">      
         <thead>
           <tr>
-            <th>STT</th>
+            <th></th>
             <th>Skill Name</th>
             <th>Skill Level</th>
             <th>Used year number</th>
           </tr>
         </thead>
         <tbody>
-          <% @skills.each do |skill| %>
-          <%= hidden_field_tag "skills[]", skill.id %>
+         <%= f.fields_for :user_skills do |builder| %>
           <tr>
-            <td><%= skill.id %></td>
-            <td><%= skill.name %></td>
+            <td><%= builder.hidden_field :skill_id, value: builder.object.skill.id %></td>
+            <td><%= builder.object.skill.name %></td>
             <td>
-              <%= select_tag("levels[]", 
-              options_for_select([['Level 1',1], ['Level 2', 2], ['Level 3', 3], ['Level 4', 4]])) %>
+              <%= builder.select :level, 
+              options_for_select([['Level 1',1], ['Level 2', 2], ['Level 3', 3], ['Level 4', 4]]) %>
             </td>
             <td>
-                <%= text_field_tag "experience_years[]" %>   
-            </td>          
+                <%= builder.text_field :experience_year %>   
+            </td>       
           <% end %>
         </tbody>
       </table>

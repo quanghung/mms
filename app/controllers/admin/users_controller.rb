@@ -12,21 +12,16 @@ class Admin::UsersController < ApplicationController
 	def new
 		@positions = Position.all
 		@teams = Team.all
-		@skills = Skill.all
+		# @skills = Skill.all
 		@user = User.new
+		Skill.all.each do |skill|
+			@user.user_skills.build(skill_id: skill.id)
+		end
 	end
 
 	def create
 		@user = User.new user_params
 	    if @user.save
-	    	skills = params[:skills]
-			levels = params[:levels]
-			experience_years = params[:experience_years]
-			index = 0
-			skills.each do |skill_id|
-				UserSkill.create! user_id: @user.id, skill_id: skill_id, level: levels[index], experience_year: experience_years[index]
-				index = index + 1
-			end
 	      flash[:success] = I18n.t ".messages.add_user.success"
 	      redirect_to admin_users_path
 	    else
@@ -68,6 +63,7 @@ class Admin::UsersController < ApplicationController
 	private
 	  def user_params
 	    params.require(:user).permit :name, :password,
-	      :password_confirmation, :email, :isAdmin, :position_id, :team_id, :birthday
+	      :password_confirmation, :email, :isAdmin, :position_id, :team_id, :birthday, 
+	      user_skills_attributes: [:level, :experience_year, :skill_id, :user_id]
 	  end
 end
