@@ -20,7 +20,7 @@ Mms::Application.routes.draw do
      resources :positions
      resources :skills
      resources :projects do
-        resources :project_users, only: [:new, :create, :destroy]
+        resources :project_users
      end
      match "/signin", to: "sessions#new", via: :get
      match "/signout", to: "sessions#destroy", via: :delete

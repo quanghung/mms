@@ -1,6 +1,5 @@
 PASSWORD = "123456"
 
-
 positions_list = [
   {name: "manager", short_name: "MA"},
   {name: "leader", short_name: "LE"},
@@ -11,16 +10,6 @@ positions_list.each do |position|
   Position.create! position
 end
 
-project_users_list = [
-  {project_id: 1, user_id: 1, leader_flag: true},
-  {project_id: 1, user_id: 2, leader_flag: false},
-  {project_id: 2, user_id: 3, leader_flag: true},
-  {project_id: 2, user_id: 4, leader_flag: false}
-]
-
-project_users_list.each do |project_user|
-  ProjectUser.create! project_user
-end
 
 skills_list = [
   {name: "Ruby"},
@@ -33,28 +22,14 @@ end
 
 
 teams_list = [
-  {name: "Team 1"},
-  {name: "Team 2"},
+  {name: "Team 1", descriptions: "1"},
+  {name: "Team 2", descriptions: "2"},
 ]
 
 teams_list.each do |team|
   Team.create! team
 end
 
-user_skills_list = [
-  {user_id: 1, skill_id: 1, level: 1, experience_year: 1},
-  {user_id: 1, skill_id: 2, level: 2, experience_year: 2},
-  {user_id: 2, skill_id: 1, level: 1, experience_year: 1},
-  {user_id: 2, skill_id: 2, level: 2, experience_year: 2},
-  {user_id: 3, skill_id: 1, level: 1, experience_year: 1},
-  {user_id: 3, skill_id: 2, level: 2, experience_year: 2},
-  {user_id: 4, skill_id: 1, level: 1, experience_year: 1},
-  {user_id: 4, skill_id: 2, level: 2, experience_year: 2}
-]
-
-user_skills_list.each do |user_skill|
-  UserSkill.create! user_skill
-end
 
 users_list = [
   {name: "Admin", position_id: 2,
@@ -95,6 +70,21 @@ users_list.each do |user|
   User.create! user
 end
 
+user_skills_list = [
+  {user_id: 1, skill_id: 1, level: 1, experience_year: 1},
+  {user_id: 1, skill_id: 2, level: 2, experience_year: 2},
+  {user_id: 2, skill_id: 1, level: 1, experience_year: 1},
+  {user_id: 2, skill_id: 2, level: 2, experience_year: 2},
+  {user_id: 3, skill_id: 1, level: 1, experience_year: 1},
+  {user_id: 3, skill_id: 2, level: 2, experience_year: 2},
+  {user_id: 4, skill_id: 1, level: 1, experience_year: 1},
+  {user_id: 4, skill_id: 2, level: 2, experience_year: 2}
+]
+
+user_skills_list.each do |user_skill|
+  UserSkill.create! user_skill
+end
+
 projects_list = [
   {name: "framgia os", short_name: "fos",
     start_date: "01-10-2013", end_date: "01-12-2013", team_id: 1},
@@ -108,4 +98,15 @@ projects_list = [
 
 projects_list.each do |project|
   Project.create! project
+end
+
+project_users_list = [
+  {project_id: 1, user_id: 1, leader_flag: true},
+  {project_id: 1, user_id: 2, leader_flag: false},
+  {project_id: 2, user_id: 3, leader_flag: true},
+  {project_id: 2, user_id: 4, leader_flag: false}
+]
+
+project_users_list.each do |project_user|
+  ProjectUser.create! project_user
 end

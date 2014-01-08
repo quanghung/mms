@@ -1,0 +1,26 @@
+<h1 class="offset1 pull-left">Add Project Members</h1>
+
+<div class="row">
+    <div class="span6 offset1">
+      <%= form_tag admin_project_project_users_path(@project) do |f| %>
+      <%= render "shared/flash_messages" %>
+        <table border="1">
+          <tr>
+            <th>User name</th>
+            <th>Is member</th>
+            <th>Is leader</th>
+          </tr>
+
+          <% @users.each do |user| %>
+                <tr>
+                  <td><%= user.name %></td>
+                  <td><%= check_box_tag "user_ids[]", user.id %></td>
+                  <td><%= radio_button_tag "leader_flags", user.id %></td>
+                </tr>
+          <% end %>
+        </table>
+      <%= submit_tag "Add Members",class: "btn btn-large btn-primary" %>
+      <% end %>
+    </div>
+</div>
+
