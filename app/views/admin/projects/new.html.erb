@@ -17,7 +17,7 @@
       <%= f.date_field :end_date %>
 
       <%= f.label :'Team id' %>
-	  <%= f.collection_select :team_id, Team.all, :id , :name, 
+	    <%= f.collection_select :team_id, Team.all, :id , :name, 
 	  		include_blank: 'Please select a team'%>
       <%= f.submit "Add project",class: "btn btn-large btn-primary" %>
       <% end %>
