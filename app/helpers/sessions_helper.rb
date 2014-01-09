@@ -25,9 +25,9 @@ module SessionsHelper
     user == current_user
   end
 
-  # def current_team
-  #   return @current_user.team_id
-  # end
+  def current_team
+    return @current_user.team_id
+  end
 
   def signed_in_user
     unless signed_in?

@@ -1,5 +1,5 @@
 class Admin::ProjectsController < ApplicationController
-  # before_action :signed_in_admin
+  before_action :signed_in_user
   
   def index
     @projects = Project.all.paginate page: params[:page]

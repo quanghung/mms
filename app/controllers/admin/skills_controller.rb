@@ -1,5 +1,5 @@
 class Admin::SkillsController < ApplicationController
-  # before_action :signed_in_admin
+  before_action :signed_in_user
   
   def index
     @skills = Skill.all.paginate page: params[:page], per_page: 1

@@ -1,5 +1,5 @@
 class Admin::ProjectUsersController < ApplicationController
-  # before_action :signed_in_admin
+  before_action :signed_in_user
   def new
     @project = Project.find(params[:project_id])
     @team = @project.team
