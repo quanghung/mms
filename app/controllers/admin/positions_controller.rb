@@ -1,6 +1,4 @@
 class Admin::PositionsController < ApplicationController
-
-  #before_action :signed_in_admin
   before_action :signed_in_user
   
   def index
